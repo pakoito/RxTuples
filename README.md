@@ -22,6 +22,11 @@ Merge the value of several hot observables:
     Observable.combineLatest(networkSubject(), bluetoothSubject(), compassSubject(), 
                              RxTuples.<NetworkStatus, BluetoothState, CompassPosition>toTriplet());
 
+Get the previous element from a sequence alongside the current one:
+
+    Observable.zip(compassSubject(), compassSubject().skip(1), 
+                   RxTuples.<CompassPosition, CompassPosition>toPair());
+
 or more complicated cases
 
     Observable.just(Quintet.with(1, 2, 3, 4, 5))
