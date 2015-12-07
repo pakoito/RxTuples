@@ -41,7 +41,7 @@ public final class RxTuples {
     }
 
     /* Triplet */
-    public static <T, A, B> rx.functions.Func2<T, Pair<A, B>, org.javatuples.Triplet<T, A, B>> toTripletFromSingle() {
+    public static <A, B, T> rx.functions.Func2<T, Pair<A, B>, org.javatuples.Triplet<T, A, B>> toTripletFromSingle() {
         return new Func2<T, Pair<A, B>, Triplet<T, A, B>>() {
             @Override
             public Triplet<T, A, B> call(T t, Pair<A, B> objects) {
@@ -253,7 +253,7 @@ public final class RxTuples {
     }
 
     /* Octet */
-    public static <T, A, B, C, D, E, F, G> Func2<T, Septet<A, B, C, D, E, F, G>, Octet<T, A, B, C, D, E, F, G>> toOctetFromSingle() {
+    public static <A, B, C, D, E, F, G, T> Func2<T, Septet<A, B, C, D, E, F, G>, Octet<T, A, B, C, D, E, F, G>> toOctetFromSingle() {
         return new Func2<T, Septet<A, B, C, D, E, F, G>, Octet<T, A, B, C, D, E, F, G>>() {
             @Override
             public Octet<T, A, B, C, D, E, F, G> call(T t, Septet<A, B, C, D, E, F, G> objects) {
