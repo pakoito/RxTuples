@@ -72,6 +72,13 @@ public class RxTuplesTest {
                 ZIP_RANGE.toBlocking().first().equals(Octet.with(1, 1, 1, 1, 1, 1, 1, 1)));
         Assert.assertEquals(true,
                 ZIP_RANGE.toBlocking().last().equals(Octet.with(10, 10, 10, 10, 10, 10, 10, 10)));
+        Assert.assertEquals(
+                true,
+                Observable
+                        .combineLatest(Observable.just(1), Observable.just(2), Observable.just(3),
+                                Observable.just(4),
+                                RxTuples.<Integer, Integer, Integer, Integer> toQuartet())
+                        .toBlocking().first().equals(RES_QUARTET));
     }
 
     @Test
