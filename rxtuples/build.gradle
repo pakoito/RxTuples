@@ -1,0 +1,9 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+dependencies {
+    compile 'org.javatuples:javatuples:1.2'
+    compile 'io.reactivex:rxjava:1.1.0'
+}
