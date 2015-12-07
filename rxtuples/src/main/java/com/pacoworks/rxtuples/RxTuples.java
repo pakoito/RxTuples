@@ -31,17 +31,17 @@ public final class RxTuples {
     }
 
     /* Pair */
-    public static <T, U> rx.functions.Func2<T, U, org.javatuples.Pair<T, U>> toPair() {
-        return new Func2<T, U, org.javatuples.Pair<T, U>>() {
+    public static <T, U> rx.functions.Func2<T, U, Pair<T, U>> toPair() {
+        return new Func2<T, U, Pair<T, U>>() {
             @Override
-            public org.javatuples.Pair<T, U> call(T t, U t2) {
-                return org.javatuples.Pair.with(t, t2);
+            public Pair<T, U> call(T t, U t2) {
+                return Pair.with(t, t2);
             }
         };
     }
 
     /* Triplet */
-    public static <A, B, T> rx.functions.Func2<T, Pair<A, B>, org.javatuples.Triplet<T, A, B>> toTripletFromSingle() {
+    public static <A, B, T> rx.functions.Func2<T, Pair<A, B>, Triplet<T, A, B>> toTripletFromSingle() {
         return new Func2<T, Pair<A, B>, Triplet<T, A, B>>() {
             @Override
             public Triplet<T, A, B> call(T t, Pair<A, B> objects) {
