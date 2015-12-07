@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) pakoito 2015
  *
@@ -57,7 +56,8 @@ public class RxTuplesTest {
             .zipWith(RANGE, RxTuples.<Integer, Integer, Integer, Integer> toQuartetFromTriplet())
             .zipWith(RANGE,
                     RxTuples.<Integer, Integer, Integer, Integer, Integer> toQuintetFromQuartet())
-            .zipWith(RANGE,
+            .zipWith(
+                    RANGE,
                     RxTuples.<Integer, Integer, Integer, Integer, Integer, Integer> toSextetFromQuintet())
             .zipWith(
                     RANGE,
@@ -67,7 +67,7 @@ public class RxTuplesTest {
                     RxTuples.<Integer, Integer, Integer, Integer, Integer, Integer, Integer, Integer> toOctetFromSeptet());
 
     @Test
-    public void testDoThing() throws Exception {
+    public void testWarmup() throws Exception {
         Assert.assertEquals(true,
                 ZIP_RANGE.toBlocking().first().equals(Octet.with(1, 1, 1, 1, 1, 1, 1, 1)));
         Assert.assertEquals(true,
@@ -81,38 +81,42 @@ public class RxTuplesTest {
 
     @Test
     public void testToTriplet() throws Exception {
-        Assert.assertEquals(
-                true,
-                RxTuples.<Integer, Integer, Integer> toTripletFromPair()
-                .call(RES_PAIR, 3).equals(RES_TRIPLET));
-        Assert.assertEquals(
-                true,
+        Assert.assertEquals(true, RxTuples.<Integer, Integer, Integer> toTriplet().call(1, 2, 3)
+                .equals(RES_TRIPLET));
+        Assert.assertEquals(true,
+                RxTuples.<Integer, Integer, Integer> toTripletFromPair().call(Pair.with(1, 2), 3)
+                        .equals(RES_TRIPLET));
+        Assert.assertEquals(true,
                 RxTuples.<Integer, Integer, Integer> toTripletFromSingle().call(1, Pair.with(2, 3))
                         .equals(RES_TRIPLET));
     }
 
     @Test
     public void testToQuartet() throws Exception {
-        Assert.assertEquals(true,
- RxTuples
-                .<Integer, Integer, Integer, Integer> toQuartetFromTriplet().call(RES_TRIPLET, 4)
+        Assert.assertEquals(
+                true,
+                RxTuples.<Integer, Integer, Integer, Integer> toQuartet().call(1, 2, 3, 4)
                         .equals(RES_QUARTET));
+        Assert.assertEquals(true, RxTuples
+                .<Integer, Integer, Integer, Integer> toQuartetFromTriplet().call(RES_TRIPLET, 4)
+                .equals(RES_QUARTET));
         Assert.assertEquals(
                 true,
                 RxTuples.<Integer, Integer, Integer, Integer> toQuartetFromSingle()
                         .call(1, Triplet.with(2, 3, 4)).equals(RES_QUARTET));
-        Assert.assertEquals(
-                true,
- RxTuples.<Integer, Integer, Integer, Integer> toQuartetFromPair()
-                        .call(Pair.with(1, 2), Pair.with(3, 4)).equals(RES_QUARTET));
+        Assert.assertEquals(true, RxTuples.<Integer, Integer, Integer, Integer> toQuartetFromPair()
+                .call(Pair.with(1, 2), Pair.with(3, 4)).equals(RES_QUARTET));
     }
 
     @Test
     public void testToQuintet() throws Exception {
         Assert.assertEquals(true, RxTuples
-.<Integer, Integer, Integer, Integer, Integer> toQuintetFromQuartet()
-                        .call(RES_QUARTET, 5)
+                .<Integer, Integer, Integer, Integer, Integer> toQuintet().call(1, 2, 3, 4, 5)
                 .equals(RES_QUINTET));
+        Assert.assertEquals(
+                true,
+                RxTuples.<Integer, Integer, Integer, Integer, Integer> toQuintetFromQuartet()
+                        .call(RES_QUARTET, 5).equals(RES_QUINTET));
         Assert.assertEquals(
                 true,
                 RxTuples.<Integer, Integer, Integer, Integer, Integer> toQuintetFromSingle()
@@ -131,6 +135,10 @@ public class RxTuplesTest {
     public void testToSextet() throws Exception {
         Assert.assertEquals(
                 true,
+                RxTuples.<Integer, Integer, Integer, Integer, Integer, Integer> toSextet()
+                        .call(1, 2, 3, 4, 5, 6).equals(RES_SEXTET));
+        Assert.assertEquals(
+                true,
                 RxTuples.<Integer, Integer, Integer, Integer, Integer, Integer> toSextetFromQuintet()
                         .call(RES_QUINTET, 6).equals(RES_SEXTET));
         Assert.assertEquals(
@@ -141,8 +149,7 @@ public class RxTuplesTest {
                 true,
                 RxTuples.<Integer, Integer, Integer, Integer, Integer, Integer> toSextetFromQuartet()
                         .call(Quartet.with(1, 2, 3, 4), Pair.with(5, 6)).equals(RES_SEXTET));
-        Assert.assertEquals(
-                true,
+        Assert.assertEquals(true,
                 RxTuples.<Integer, Integer, Integer, Integer, Integer, Integer> toSextetFromPair()
                         .call(Pair.with(1, 2), Quartet.with(3, 4, 5, 6)).equals(RES_SEXTET));
         Assert.assertEquals(
@@ -154,6 +161,10 @@ public class RxTuplesTest {
     @Test
     public void testToSeptet() throws Exception {
         Assert.assertEquals(true,
+                RxTuples.<Integer, Integer, Integer, Integer, Integer, Integer, Integer> toSeptet()
+                        .call(1, 2, 3, 4, 5, 6, 7).equals(RES_SEPTET));
+        Assert.assertEquals(
+                true,
                 RxTuples.<Integer, Integer, Integer, Integer, Integer, Integer, Integer> toSeptetFromSextet()
                         .call(RES_SEXTET, 7).equals(RES_SEPTET));
         Assert.assertEquals(
@@ -164,11 +175,9 @@ public class RxTuplesTest {
                 true,
                 RxTuples.<Integer, Integer, Integer, Integer, Integer, Integer, Integer> toSeptetFromQuintet()
                         .call(Quintet.with(1, 2, 3, 4, 5), Pair.with(6, 7)).equals(RES_SEPTET));
-        Assert.assertEquals(
-                true,
- RxTuples
+        Assert.assertEquals(true, RxTuples
                 .<Integer, Integer, Integer, Integer, Integer, Integer, Integer> toSeptetFromPair()
-                        .call(Pair.with(1, 2), Quintet.with(3, 4, 5, 6, 7)).equals(RES_SEPTET));
+                .call(Pair.with(1, 2), Quintet.with(3, 4, 5, 6, 7)).equals(RES_SEPTET));
         Assert.assertEquals(
                 true,
                 RxTuples.<Integer, Integer, Integer, Integer, Integer, Integer, Integer> toSeptetFromQuartet()
@@ -182,8 +191,12 @@ public class RxTuplesTest {
     @Test
     public void testToOctet() throws Exception {
         Assert.assertEquals(true, RxTuples
-.<Integer, Integer, Integer, Integer, Integer, Integer, Integer, Integer> toOctetFromSeptet()
-                .call(RES_SEPTET, 8).equals(RES_OCTET));
+                .<Integer, Integer, Integer, Integer, Integer, Integer, Integer, Integer> toOctet()
+                .call(1, 2, 3, 4, 5, 6, 7, 8).equals(RES_OCTET));
+        Assert.assertEquals(
+                true,
+                RxTuples.<Integer, Integer, Integer, Integer, Integer, Integer, Integer, Integer> toOctetFromSeptet()
+                        .call(RES_SEPTET, 8).equals(RES_OCTET));
         Assert.assertEquals(
                 true,
                 RxTuples.<Integer, Integer, Integer, Integer, Integer, Integer, Integer, Integer> toOctetFromSingle()

@@ -25,6 +25,12 @@ import org.javatuples.Sextet;
 import org.javatuples.Triplet;
 
 import rx.functions.Func2;
+import rx.functions.Func3;
+import rx.functions.Func4;
+import rx.functions.Func5;
+import rx.functions.Func6;
+import rx.functions.Func7;
+import rx.functions.Func8;
 
 public final class RxTuples {
     private RxTuples() {
@@ -41,6 +47,15 @@ public final class RxTuples {
     }
 
     /* Triplet */
+    public static <A, B, C> Func3<A, B, C, Triplet<A, B, C>> toTriplet() {
+        return new Func3<A, B, C, Triplet<A, B, C>>() {
+            @Override
+            public Triplet<A, B, C> call(A a, B b, C c) {
+                return Triplet.with(a, b, c);
+            }
+        };
+    }
+
     public static <A, B, T> rx.functions.Func2<T, Pair<A, B>, Triplet<T, A, B>> toTripletFromSingle() {
         return new Func2<T, Pair<A, B>, Triplet<T, A, B>>() {
             @Override
@@ -60,6 +75,15 @@ public final class RxTuples {
     }
 
     /* Quartet */
+    public static <A, B, C, D> Func4<A, B, C, D, Quartet<A, B, C, D>> toQuartet() {
+        return new Func4<A, B, C, D, Quartet<A, B, C, D>>() {
+            @Override
+            public Quartet<A, B, C, D> call(A a, B b, C c, D d) {
+                return Quartet.with(a, b, c, d);
+            }
+        };
+    }
+
     public static <A, B, C, T> Func2<T, Triplet<A, B, C>, Quartet<T, A, B, C>> toQuartetFromSingle() {
         return new Func2<T, Triplet<A, B, C>, Quartet<T, A, B, C>>() {
             @Override
@@ -91,6 +115,16 @@ public final class RxTuples {
     }
 
     /* Quintet */
+
+    public static <A, B, C, D, E> Func5<A, B, C, D, E, Quintet<A, B, C, D, E>> toQuintet() {
+        return new Func5<A, B, C, D, E, Quintet<A, B, C, D, E>>() {
+            @Override
+            public Quintet<A, B, C, D, E> call(A a, B b, C c, D d, E e) {
+                return Quintet.with(a, b, c, d, e);
+            }
+        };
+    }
+
     public static <A, B, C, D, T> Func2<T, Quartet<A, B, C, D>, Quintet<T, A, B, C, D>> toQuintetFromSingle() {
         return new Func2<T, Quartet<A, B, C, D>, Quintet<T, A, B, C, D>>() {
             @Override
@@ -132,6 +166,16 @@ public final class RxTuples {
     }
 
     /* Sextet */
+
+    public static <A, B, C, D, E, F> Func6<A, B, C, D, E, F, Sextet<A, B, C, D, E, F>> toSextet() {
+        return new Func6<A, B, C, D, E, F, Sextet<A, B, C, D, E, F>>() {
+            @Override
+            public Sextet<A, B, C, D, E, F> call(A a, B b, C c, D d, E e, F f) {
+                return Sextet.with(a, b, c, d, e, f);
+            }
+        };
+    }
+
     public static <A, B, C, D, E, T> Func2<T, Quintet<A, B, C, D, E>, Sextet<T, A, B, C, D, E>> toSextetFromSingle() {
         return new Func2<T, Quintet<A, B, C, D, E>, Sextet<T, A, B, C, D, E>>() {
             @Override
@@ -183,6 +227,16 @@ public final class RxTuples {
     }
 
     /* Septet */
+
+    public static <A, B, C, D, E, F, G> Func7<A, B, C, D, E, F, G, Septet<A, B, C, D, E, F, G>> toSeptet() {
+        return new Func7<A, B, C, D, E, F, G, Septet<A, B, C, D, E, F, G>>() {
+            @Override
+            public Septet<A, B, C, D, E, F, G> call(A a, B b, C c, D d, E e, F f, G g) {
+                return Septet.with(a, b, c, d, e, f, g);
+            }
+        };
+    }
+
     public static <A, B, C, D, E, F, T> Func2<T, Sextet<A, B, C, D, E, F>, Septet<T, A, B, C, D, E, F>> toSeptetFromSingle() {
         return new Func2<T, Sextet<A, B, C, D, E, F>, Septet<T, A, B, C, D, E, F>>() {
             @Override
@@ -198,7 +252,7 @@ public final class RxTuples {
         return new Func2<Pair<A, B>, Quintet<C, D, E, F, G>, Septet<A, B, C, D, E, F, G>>() {
             @Override
             public Septet<A, B, C, D, E, F, G> call(Pair<A, B> objects,
-                    Quintet<C, D, E, F, G> objects2) {
+                                                    Quintet<C, D, E, F, G> objects2) {
                 return Septet.with(objects.getValue0(), objects.getValue1(), objects2.getValue0(),
                         objects2.getValue1(), objects2.getValue2(), objects2.getValue3(),
                         objects2.getValue4());
@@ -210,7 +264,7 @@ public final class RxTuples {
         return new Func2<Triplet<A, B, C>, Quartet<D, E, F, G>, Septet<A, B, C, D, E, F, G>>() {
             @Override
             public Septet<A, B, C, D, E, F, G> call(Triplet<A, B, C> objects,
-                    Quartet<D, E, F, G> objects2) {
+                                                    Quartet<D, E, F, G> objects2) {
                 return Septet.with(objects.getValue0(), objects.getValue1(), objects.getValue2(),
                         objects2.getValue0(), objects2.getValue1(), objects2.getValue2(),
                         objects2.getValue3());
@@ -222,7 +276,7 @@ public final class RxTuples {
         return new Func2<Quartet<A, B, C, D>, Triplet<E, F, G>, Septet<A, B, C, D, E, F, G>>() {
             @Override
             public Septet<A, B, C, D, E, F, G> call(Quartet<A, B, C, D> objects,
-                    Triplet<E, F, G> objects2) {
+                                                    Triplet<E, F, G> objects2) {
                 return Septet.with(objects.getValue0(), objects.getValue1(), objects.getValue2(),
                         objects.getValue3(), objects2.getValue0(), objects2.getValue1(),
                         objects2.getValue2());
@@ -234,7 +288,7 @@ public final class RxTuples {
         return new Func2<Quintet<A, B, C, D, E>, Pair<F, G>, Septet<A, B, C, D, E, F, G>>() {
             @Override
             public Septet<A, B, C, D, E, F, G> call(Quintet<A, B, C, D, E> objects,
-                    Pair<F, G> objects2) {
+                                                    Pair<F, G> objects2) {
                 return Septet.with(objects.getValue0(), objects.getValue1(), objects.getValue2(),
                         objects.getValue3(), objects.getValue4(), objects2.getValue0(),
                         objects2.getValue1());
@@ -253,6 +307,16 @@ public final class RxTuples {
     }
 
     /* Octet */
+    public static <A, B, C, D, E, F, G, H> Func8<A, B, C, D, E, F, G, H, Octet<A, B, C, D, E, F, G, H>> toOctet() {
+        return new Func8<A, B, C, D, E, F, G, H, Octet<A, B, C, D, E, F, G, H>>() {
+            @Override
+            public Octet<A, B, C, D, E, F, G, H> call(A a, B b, C c, D d, E e, F f, G g, H h) {
+                return Octet.with(a, b, c, d, e, f, g, h);
+            }
+        };
+    }
+
+
     public static <A, B, C, D, E, F, G, T> Func2<T, Septet<A, B, C, D, E, F, G>, Octet<T, A, B, C, D, E, F, G>> toOctetFromSingle() {
         return new Func2<T, Septet<A, B, C, D, E, F, G>, Octet<T, A, B, C, D, E, F, G>>() {
             @Override
@@ -268,7 +332,7 @@ public final class RxTuples {
         return new Func2<Pair<A, B>, Sextet<C, D, E, F, G, H>, Octet<A, B, C, D, E, F, G, H>>() {
             @Override
             public Octet<A, B, C, D, E, F, G, H> call(Pair<A, B> objects,
-                    Sextet<C, D, E, F, G, H> objects2) {
+                                                      Sextet<C, D, E, F, G, H> objects2) {
                 return Octet.with(objects.getValue0(), objects.getValue1(), objects2.getValue0(),
                         objects2.getValue1(), objects2.getValue2(), objects2.getValue3(),
                         objects2.getValue4(), objects2.getValue5());
@@ -280,7 +344,7 @@ public final class RxTuples {
         return new Func2<Triplet<A, B, C>, Quintet<D, E, F, G, H>, Octet<A, B, C, D, E, F, G, H>>() {
             @Override
             public Octet<A, B, C, D, E, F, G, H> call(Triplet<A, B, C> objects,
-                    Quintet<D, E, F, G, H> objects2) {
+                                                      Quintet<D, E, F, G, H> objects2) {
                 return Octet.with(objects.getValue0(), objects.getValue1(), objects.getValue2(),
                         objects2.getValue0(), objects2.getValue1(), objects2.getValue2(),
                         objects2.getValue3(), objects2.getValue4());
@@ -292,7 +356,7 @@ public final class RxTuples {
         return new Func2<Quartet<A, B, C, D>, Quartet<E, F, G, H>, Octet<A, B, C, D, E, F, G, H>>() {
             @Override
             public Octet<A, B, C, D, E, F, G, H> call(Quartet<A, B, C, D> objects,
-                    Quartet<E, F, G, H> objects2) {
+                                                      Quartet<E, F, G, H> objects2) {
                 return Octet.with(objects.getValue0(), objects.getValue1(), objects.getValue2(),
                         objects.getValue3(), objects2.getValue0(), objects2.getValue1(),
                         objects2.getValue2(), objects2.getValue3());
@@ -304,7 +368,7 @@ public final class RxTuples {
         return new Func2<Quintet<A, B, C, D, E>, Triplet<F, G, H>, Octet<A, B, C, D, E, F, G, H>>() {
             @Override
             public Octet<A, B, C, D, E, F, G, H> call(Quintet<A, B, C, D, E> objects,
-                    Triplet<F, G, H> objects2) {
+                                                      Triplet<F, G, H> objects2) {
                 return Octet.with(objects.getValue0(), objects.getValue1(), objects.getValue2(),
                         objects.getValue3(), objects.getValue4(), objects2.getValue0(),
                         objects2.getValue1(), objects2.getValue2());
@@ -316,7 +380,7 @@ public final class RxTuples {
         return new Func2<Sextet<A, B, C, D, E, F>, Pair<G, H>, Octet<A, B, C, D, E, F, G, H>>() {
             @Override
             public Octet<A, B, C, D, E, F, G, H> call(Sextet<A, B, C, D, E, F> objects,
-                    Pair<G, H> objects2) {
+                                                      Pair<G, H> objects2) {
                 return Octet.with(objects.getValue0(), objects.getValue1(), objects.getValue2(),
                         objects.getValue3(), objects.getValue4(), objects.getValue5(),
                         objects2.getValue0(), objects2.getValue1());
