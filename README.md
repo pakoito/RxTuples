@@ -34,6 +34,36 @@ or more complicated cases
                     Observable.just(Triplet.with(6, 7, 8)),
                     RxTuples.<Integer, Integer, Integer, Integer, Integer, Integer, Integer, Integer> toOctetFromQuintet());
 
+##Distribution
+
+Add as a dependency to your `build.gradle`
+
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+        ...
+    }
+    
+    dependencies {
+        ...
+        compile 'com.github.pakoito:RxTuples:1.0.+'
+        ...
+    }
+
+or to your `pom.xml`
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+    
+    <dependency>
+        <groupId>com.github.pakoito</groupId>
+        <artifactId>RxTuples</artifactId>
+        <version>1.0.0</version>
+    </dependency>
 
 ##License
 
