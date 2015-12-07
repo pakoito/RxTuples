@@ -15,6 +15,9 @@
  */
 
 apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.github.pakoito'
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
@@ -22,4 +25,18 @@ targetCompatibility = 1.6
 dependencies {
     compile 'org.javatuples:javatuples:1.2'
     compile 'io.reactivex:rxjava:1.1.0'
+}
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+        }
+    }
 }
