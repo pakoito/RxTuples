@@ -2,6 +2,8 @@
 
 RxTuples is a library to smooth RxJava usage by adding simple Tuple creation functions.
 
+For the RxJava 2.X version, please go to [RxTuples2](https://github.com/pakoito/RxTuples2).
+
 ##Rationale
 
 Quite often when using RxJava you find the need to forward a value alongside the result of an operation, combine several values, or simply adding an external value to the current internal state of the chain. For this you either create ad-hoc types that may only be used locally, which is inefficient.
